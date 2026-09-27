@@ -18,7 +18,7 @@ export default {
     const payload = await request.text();
     const apiKey = (env.ONESIGNAL_REST_API_KEY || '').trim();
 
-    const res = await fetch('https://onesignal.com/api/v1/notifications', {
+    const res = await fetch('https://api.onesignal.com/notifications', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
