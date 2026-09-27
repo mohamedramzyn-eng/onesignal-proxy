@@ -1,7 +1,8 @@
 export default {
   async fetch(request, env) {
+    const allowedOrigin = (env.ALLOWED_ORIGIN || '').trim();
     const corsHeaders = {
-      'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN,
+      'Access-Control-Allow-Origin': allowedOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
@@ -15,12 +16,13 @@ export default {
     }
 
     const payload = await request.text();
+    const apiKey = (env.ONESIGNAL_REST_API_KEY || '').trim();
 
     const res = await fetch('https://onesignal.com/api/v1/notifications', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': `Basic ${env.ONESIGNAL_REST_API_KEY}`
+        'Authorization': `Basic ${apiKey}`
       },
       body: payload
     });
