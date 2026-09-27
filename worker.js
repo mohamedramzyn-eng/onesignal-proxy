@@ -22,7 +22,7 @@ export default {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': `Basic ${apiKey}`
+'Authorization': `Key ${apiKey}`
       },
       body: payload
     });
